@@ -121,11 +121,11 @@ RUN --mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:ef0d731664a182a8
   /scripts/post_build.sh
 
 # Labels are added last since they cause cache misses with buildah
-LABEL org.blue-build.build-id="ebb6897b-cc65-4fc4-95be-2caa74dc0aa7"
+LABEL org.blue-build.build-id="3f346d6d-a718-48ce-bea3-d4f6e0f64027"
 LABEL org.opencontainers.image.title="custom-image"
 LABEL org.opencontainers.image.description="Custom Aurora image"
 LABEL org.opencontainers.image.source=""
 LABEL org.opencontainers.image.base.digest="sha256:602b852af73829513df520779a25341ab90e49c032cb77a24e0da8da127f9fa8"
 LABEL org.opencontainers.image.base.name="ghcr.io/ublue-os/aurora-dx:stable"
-LABEL org.opencontainers.image.created="2025-07-21T18:29:51.436214486+00:00"
+LABEL org.opencontainers.image.created="2025-07-21T18:46:34.729234891+00:00"
 LABEL io.artifacthub.package.readme-url=https://raw.githubusercontent.com/blue-build/cli/main/README.md
