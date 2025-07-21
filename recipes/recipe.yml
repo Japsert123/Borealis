@@ -56,8 +56,9 @@ modules:
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
   - type: systemd
-    disabled:
-      - ModemManager.service
-      - systemd-homed.service
-      - systemd-machined.service
-      - zfs-zed.service
+    system:
+      disabled:
+        - ModemManager.service
+        - systemd-homed.service
+        - systemd-machined.service
+        - zfs-zed.service
