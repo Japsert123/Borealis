@@ -23,12 +23,14 @@ modules:
           - sneexy/zen-browser
 
     install:
-      - zen-browser
-      - micro
-      - codium
+      packages:
+        - zen-browser
+        - micro
+        - codium
     
     remove:
-      - code
+      packages:
+        - code
 
   - type: files
     files:
@@ -62,3 +64,12 @@ modules:
         - systemd-homed.service
         - systemd-machined.service
         - zfs-zed.service
+
+  - type: akmods
+    install:
+      - evdi
+
+  - type: dnf
+    install:
+      packages:
+        - displaylink
