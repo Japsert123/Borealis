@@ -28,9 +28,6 @@ COPY --from=ghcr.io/blue-build/cli:latest-installer \
 FROM scratch AS stage-keys
 COPY cosign.pub /keys/custom-image.pub
 
-# Stage for AKmod main
-FROM scratch as stage-akmods-main
-COPY --from=ghcr.io/ublue-os/akmods:main-42 /rpms /rpms
 
 # Main image
 FROM ghcr.io/ublue-os/aurora-dx@sha256:602b852af73829513df520779a25341ab90e49c032cb77a24e0da8da127f9fa8 AS custom-image
@@ -96,36 +93,28 @@ RUN \
 /tmp/scripts/run_module.sh 'signing' '{"type":"signing"}'
 RUN \
 --mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
---mount=type=bind,from=ghcr.io/blue-build/modules/systemd:latest,src=/modules,dst=/tmp/modules,rw \
---mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:ef0d731664a182a89451bba178a539fb559a2c6b,src=/scripts/,dst=/tmp/scripts/ \
-  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-custom-image-stable,sharing=locked \
-  --mount=type=cache,dst=/var/cache/libdnf5,id=dnf-cache-custom-image-stable,sharing=locked \
-/tmp/scripts/run_module.sh 'systemd' '{"type":"systemd","system":{"disabled":["ModemManager.service","systemd-homed.service","systemd-machined.service","zfs-zed.service"]}}'
-RUN \
---mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
---mount=type=bind,from=ghcr.io/blue-build/modules/akmods:latest,src=/modules,dst=/tmp/modules,rw \
---mount=type=bind,from=stage-akmods-main,src=/rpms,dst=/tmp/rpms,rw \
---mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:ef0d731664a182a89451bba178a539fb559a2c6b,src=/scripts/,dst=/tmp/scripts/ \
-  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-custom-image-stable,sharing=locked \
-  --mount=type=cache,dst=/var/cache/libdnf5,id=dnf-cache-custom-image-stable,sharing=locked \
-/tmp/scripts/run_module.sh 'akmods' '{"type":"akmods","install":["evdi"]}'
-RUN \
---mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
 --mount=type=bind,from=ghcr.io/blue-build/modules/dnf:latest,src=/modules,dst=/tmp/modules,rw \
 --mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:ef0d731664a182a89451bba178a539fb559a2c6b,src=/scripts/,dst=/tmp/scripts/ \
   --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-custom-image-stable,sharing=locked \
   --mount=type=cache,dst=/var/cache/libdnf5,id=dnf-cache-custom-image-stable,sharing=locked \
 /tmp/scripts/run_module.sh 'dnf' '{"type":"dnf","install":{"packages":["displaylink"]}}'
+RUN \
+--mount=type=bind,from=stage-files,src=/files,dst=/tmp/files,rw \
+--mount=type=bind,from=ghcr.io/blue-build/modules/systemd:latest,src=/modules,dst=/tmp/modules,rw \
+--mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:ef0d731664a182a89451bba178a539fb559a2c6b,src=/scripts/,dst=/tmp/scripts/ \
+  --mount=type=cache,dst=/var/cache/rpm-ostree,id=rpm-ostree-cache-custom-image-stable,sharing=locked \
+  --mount=type=cache,dst=/var/cache/libdnf5,id=dnf-cache-custom-image-stable,sharing=locked \
+/tmp/scripts/run_module.sh 'systemd' '{"type":"systemd","system":{"disabled":["ModemManager.service","systemd-homed.service","systemd-machined.service","zfs-zed.service"],"enabled":["displaylink.service"]}}'
 
 RUN --mount=type=bind,from=ghcr.io/blue-build/cli/build-scripts:ef0d731664a182a89451bba178a539fb559a2c6b,src=/scripts/,dst=/scripts/ \
   /scripts/post_build.sh
 
 # Labels are added last since they cause cache misses with buildah
-LABEL org.blue-build.build-id="3f346d6d-a718-48ce-bea3-d4f6e0f64027"
+LABEL org.blue-build.build-id="5bc23a17-753a-4fbc-adb1-4e2fd29b4db4"
 LABEL org.opencontainers.image.title="custom-image"
 LABEL org.opencontainers.image.description="Custom Aurora image"
 LABEL org.opencontainers.image.source=""
 LABEL org.opencontainers.image.base.digest="sha256:602b852af73829513df520779a25341ab90e49c032cb77a24e0da8da127f9fa8"
 LABEL org.opencontainers.image.base.name="ghcr.io/ublue-os/aurora-dx:stable"
-LABEL org.opencontainers.image.created="2025-07-21T18:46:34.729234891+00:00"
+LABEL org.opencontainers.image.created="2025-07-24T20:08:52.587048088+00:00"
 LABEL io.artifacthub.package.readme-url=https://raw.githubusercontent.com/blue-build/cli/main/README.md
