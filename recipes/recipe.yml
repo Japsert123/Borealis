@@ -57,6 +57,11 @@ modules:
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
+  - type: dnf
+    install:
+      packages:
+        - displaylink
+
   - type: systemd
     system:
       disabled:
@@ -64,12 +69,5 @@ modules:
         - systemd-homed.service
         - systemd-machined.service
         - zfs-zed.service
-
-  - type: akmods
-    install:
-      - evdi
-
-  - type: dnf
-    install:
-      packages:
-        - displaylink
+      enabled:
+        - displaylink.service
