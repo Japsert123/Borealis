@@ -22,11 +22,16 @@ modules:
         enable:
           - sneexy/zen-browser
 
+      files:
+        - https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+
     install:
       packages:
         - zen-browser
         - micro
         - codium
+        - vivaldi-stable
+        - displaylink
     
     remove:
       packages:
@@ -56,11 +61,6 @@ modules:
     user: {} # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
-
-  - type: dnf
-    install:
-      packages:
-        - displaylink
 
   - type: systemd
     system:
