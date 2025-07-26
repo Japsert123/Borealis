@@ -1,0 +1,43 @@
+modules:
+  - type: script
+    scripts:
+      - add_codium_repo.sh
+
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - sneexy/zen-browser
+
+      files:
+        - https://repo.vivaldi.com/archive/vivaldi-fedora.repo
+
+    install:
+      packages:
+        - zen-browser
+        - micro
+        - codium
+        - vivaldi-stable
+        - displaylink
+    
+    remove:
+      packages:
+        - code
+
+  - type: default-flatpaks
+    notify: true # Send notification after install/uninstall is finished (true/false)
+    system:
+      # If no repo information is specified, Flathub will be used by default
+      install:
+        - io.github.dvlv.boxbuddyrs
+        - io.github.flattool.Warehouse
+        - org.gimp.GIMP
+        - org.kde.gwenview
+        - org.kde.kdenlive
+        - org.kde.krita
+        - org.kde.haruna
+        - org.kde.kcalc
+        - org.kde.okular
+        - org.libreoffice.LibreOffice
+
+    user: {} # Also add Flathub user repo, but no user packages
