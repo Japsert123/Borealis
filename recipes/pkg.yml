@@ -25,19 +25,23 @@ modules:
         - code
 
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      # If no repo information is specified, Flathub will be used by default
-      install:
-        - io.github.dvlv.boxbuddyrs
-        - io.github.flattool.Warehouse
-        - org.gimp.GIMP
-        - org.kde.gwenview
-        - org.kde.kdenlive
-        - org.kde.krita
-        - org.kde.haruna
-        - org.kde.kcalc
-        - org.kde.okular
-        - org.libreoffice.LibreOffice
-
-    user: {} # Also add Flathub user repo, but no user packages
+    configurations:
+      - scope: user
+        repo:
+          # you can override the title to make inclusion of both system and user repos clearer
+          title: Flathub (user)
+      - notify: true
+        scope: system
+        repo:
+          title: Flathub (system)
+        install:
+          - io.github.dvlv.boxbuddyrs
+          - io.github.flattool.Warehouse
+          - org.gimp.GIMP
+          - org.kde.gwenview
+          - org.kde.kdenlive
+          - org.kde.krita
+          - org.kde.haruna
+          - org.kde.kcalc
+          - org.kde.okular
+          - org.libreoffice.LibreOffice
