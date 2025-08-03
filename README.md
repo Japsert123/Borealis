@@ -1,8 +1,11 @@
 # custom-image &nbsp; [![bluebuild build badge](https://github.com/japsert123/custom-image/actions/workflows/build.yml/badge.svg)](https://github.com/japsert123/custom-image/actions/workflows/build.yml)
 
-See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup instructions for setting up your own repository based on this template.
-
-After setup, it is recommended you update this README to describe your custom image.
+This is a custom bootc image based on Universal Blue's [Aurora-DX](https://getaurora.dev/en), this repository generates two images: 1 with Nvidia-open drivers and 1 without. The changes made are as follows:
+- Replace VSCode with VSCodium
+- Install DisplayLink from the [COPR Repository](https://copr.fedorainfracloud.org/coprs/crashdummy/Displaylink/) and enable the Systemd service
+- Install the Vivaldi and Zen browser as native packages instead of Flatpaks for [increased security](https://discuss.privacyguides.net/t/firefox-sandbox-when-installed-as-flatpak-is-it-fixed-yet/29031/4).
+- Install the Micro text editor
+- Pre-install [a number](https://github.com/Japsert123/custom-image/blob/37558df5f272bedf3aae0b2286a7e93eef56062d/recipes/pkg.yml#L37C9-L37C16) of flatpaks
 
 ## Installation
 
@@ -29,6 +32,25 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 
 The `latest` tag will automatically point to the latest build. That build will still always use the Fedora version specified in `recipe.yml`, so you won't get accidentally updated to the next major version.
+
+## Building locally
+Building locally is most easily done in distrobox. Clone this repo and run the following command:
+
+```bash
+distrobox-assemble create
+```
+This will download the BlueBuid distrobox image and export the ```bluebuild``` binary. The images can be built with 
+
+```bash
+bluebuild build recipes/recipe.yml
+```
+or
+
+```bash
+bluebuild build recipes/nv.yml
+```
+
+It is also possible to generate a ```Containerfile``` with BlueBuild, see the [docs](https://blue-build.org/how-to/local/) for more information. 
 
 ## ISO
 
