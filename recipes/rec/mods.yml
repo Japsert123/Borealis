@@ -3,8 +3,8 @@ modules:
     system:
       disabled:
         - ModemManager.service
-        - systemd-homed.service
-        - systemd-machined.service
+        # - systemd-homed.service
+        # - systemd-machined.service
         - zfs-zed.service
       enabled:
         - displaylink.service
