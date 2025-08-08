@@ -1,4 +1,4 @@
-# custom-image &nbsp; [![bluebuild build badge](https://github.com/japsert123/custom-image/actions/workflows/build.yml/badge.svg)](https://github.com/japsert123/custom-image/actions/workflows/build.yml)
+# Borealis &nbsp; [![bluebuild build badge](https://github.com/japsert123/custom-image/actions/workflows/build.yml/badge.svg)](https://github.com/japsert123/custom-image/actions/workflows/build.yml)
 
 This is a custom bootc image based on Universal Blue's [Aurora-DX](https://getaurora.dev/en), this repository generates two images: 1 with Nvidia-open drivers and 1 without. The changes made are as follows:
 - Replace VSCode with VSCodium
