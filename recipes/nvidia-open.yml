@@ -17,7 +17,7 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - from-file: rec/pkg.yml
-  - from-file: rec/mods.yml
+  - from-file: shared/pkg.yml
+  - from-file: shared/mods.yml
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
