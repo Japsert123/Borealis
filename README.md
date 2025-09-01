@@ -3,7 +3,7 @@
 This is a custom bootc image based on Universal Blue's [Aurora-DX](https://getaurora.dev/en), this repository generates two images: 1 with Nvidia-open drivers and 1 without. The changes made are as follows:
 - Replace VSCode with VSCodium
 - Install DisplayLink from the [COPR Repository](https://copr.fedorainfracloud.org/coprs/crashdummy/Displaylink/) and enable the Systemd service
-- Install the Vivaldi and Zen browser as native packages instead of Flatpaks for [increased security](https://discuss.privacyguides.net/t/firefox-sandbox-when-installed-as-flatpak-is-it-fixed-yet/29031/4).
+- Install the Vivaldi and Zen browser as native packages instead of Flatpaks for [increased security]([https://discuss.privacyguides.net/t/firefox-sandbox-when-installed-as-flatpak-is-it-fixed-yet/29031/4](https://discussion.fedoraproject.org/t/is-it-better-to-have-a-browser-sand-boxed-with-flatpak-or-not/162425/17)).
 - Install the Micro text editor
 - Pre-install [a number](https://github.com/Japsert123/custom-image/blob/37558df5f272bedf3aae0b2286a7e93eef56062d/recipes/pkg.yml#L37C9-L37C16) of flatpaks
 
