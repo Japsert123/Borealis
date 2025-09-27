@@ -1,0 +1,9 @@
+modules:
+  - type: os-release
+    properties:
+      ID: borealis
+      NAME: Borealis
+      PRETTY_NAME: Borealis
+      ID_LIKE: fedora
+
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully
