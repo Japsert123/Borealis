@@ -5,6 +5,7 @@ modules:
 
   - type: dnf
     repos:
+      # nonfree: negativo17
       copr:
         enable:
           - sneexy/zen-browser
@@ -18,7 +19,7 @@ modules:
         - micro
         - codium
         - vivaldi-stable
-        - displaylink
+        # - displaylink
     
     remove:
       packages:
